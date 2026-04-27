@@ -38,7 +38,7 @@ print( x.dtype )        # int32 , 정수형 32bit , bit가 클수록 더 많은 
 # 필요에 따라 적절하게 bit 선택한다.
 
 x = np.array( [ 1.0 , 2.0 , 3.0 ] , dtype=np.float64 )
-print( x.dtype )        # float64 , 실수형 , 더 큰 bit 이면 더 정밀한 오차를 최소화한다.
+print( x.dtype )        # float64 , 실수형 , 더 큰 bit 이면 더 정밀하게 계산하여 오차를 최소화한다.
 
 x = np.array( [True, False , True] , dtype=np.bool_ )
 print( x.dtype )        # bool , 논리형 
