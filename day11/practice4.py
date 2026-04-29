@@ -37,6 +37,7 @@ print( data[ findIndex , 0 ] )
 # [4-1] 전체에서 몇명 인지 <---> 조건 True 개수  
 cont1 = (data[ : , 1 ] <= 3 ) & ( data[ : , 3 ] <= 1 )      # 조건에 따른 True만 추출  
 print( np.sum( cont1 ) )                                    # 배열에 전체 True 합계 = 23
+print( len( data[cont1] ) )
 
 # [5] 정규화, 공식 : ( 값 - 최솟값 ) / ( 최댓값 - 최소값 ) 
 # 어떠한 자료들을 0과 1 사이의 값으로 만들어서 ( 백분율 0:0% ~ 1:100% ) , 비교가 쉽다(용이하다)
@@ -49,6 +50,7 @@ norm_data = ( sales - data_min ) / ( data_max - data_min )
 vip_data = norm_data >= 0.9
 print( vip_data )
 print( data[ vip_data ] )
+print( len( data[vip_data] ) )
 # ------------------------------------- # 
 x = np.array( [ True , False , True ] )
 y = np.array( [ 1 , 2 , 3 ] ) 
