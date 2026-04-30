@@ -40,4 +40,63 @@ print( z.index )        # 인덱스반환, Index(['apple', 'banana', 'cherry'], 
 print( z.values )       # 값반환 , [1 2 3]
 print( z.head(2) )      # .head(n) , 상위 n개(기본값:5) 개만 출력( 확인용 )
 print( z.tail(2) )      # .tail(n) , 하위 n개 만 출력 
-print( z.iloc[0] )      # iloc[인덱스번호] , 라벨이 아닌 위치로 조회
+
+# 5. 인덱싱 , 슬라이싱 
+print( z.iloc[0] )                      # iloc[인덱스번호] , 라벨이 아닌 위치로 조회
+print( z.loc['apple'] )                 # loc[ 라벨명 ] , 라벨명으로 조회 
+print( z.loc['apple' : 'cherry'] )      # loc[ 시작라벨 : 끝라벨 ]
+
+# 6. 데이터 수정 
+z['apple'] = 10             # [ 기존라벨명 ] = 새로운값 
+print( z )
+print( z['apple'] )         # [ 기존라벨명 ]
+
+# 7. 데이터 추가 
+z[ 'berry' ] = 40           # [ 새로운라벨명 ] = 새로운값 
+print( z )
+
+# 8. 병합 , .concat( [ x , y ] )
+# 파이썬 리스트 합치기
+x = [10,20,30]
+y = [40,50]
+print( x + y )          # [10, 20, 30, 40, 50]
+print( [ x , y ] )      # [[10, 20, 30], [40, 50]]
+print( [ *x , *y ] )    # [10, 20, 30, 40, 50]
+
+# 판다스 합치기 , .concat( [ x , y ] )
+x = pd.Series( [10,20,30] , index=['a','b','c'] )
+y = pd.Series( [40,50] , index=[ 'd' , 'e' ] )
+z = pd.concat( [ x , y ] )
+print( z )
+
+# 9. 라벨 이름 변경 , .rename( { '기존' : '새로운' } )
+# 파이썬 , 문자(리터럴)
+test = 'hello java'                 # hello java
+test = test.replace( ' ' , '-')     # 문자열(리터럴)은 불변성 특징
+print( test )                       # hello-java
+
+x = z.rename( {'a' : 'apple' } )
+print( x )
+
+# 10. 필터링 , [ 조건식 ] , [ ( 조건식1 ) | ( 조건식2 ) ]
+print( z[ z > 30 ] )            # 30초과 필터링 
+x = z[ z > 30 ]
+print( x )
+x = z[ ( z < 25 ) | ( z > 35 ) ] #  25보다 작거나 35보다 크다 
+print( x )
+x = z[ ( z > 25 ) & ( z < 35 ) ] #  25보다 크면서 35보다 작다 
+print( x )
+z[ z > 30 ] = z[ z > 30 ] + 10  # 30초과 한 요소값에 10 더한 후 에 30 초과 한 요소에만 대입 
+print( z )
+
+# 11. 통계
+print( z.sum() )            # .sum() 합계
+print( z.mean() )           # .mean() 평균 
+print( z.max() )            # .max() 최댓값 
+print( z.min() )            # .min() 최솟값 
+print( z.median() )         # .median() 중앙값 
+print( z.var() )            # .var() 분산
+print( z.std() )            # .std() 표준편차
+print( z.count() )          # .count() 요소 개수 
+print( z.value_counts( ) )   # 각 요소별 중복 개수
+print( z.value_counts( normalize=True ) ) # 각 요소가 전체에서 차지하는 비율(0~1)
