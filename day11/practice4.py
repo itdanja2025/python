@@ -51,6 +51,7 @@ vip_data = norm_data >= 0.9
 print( vip_data )
 print( data[ vip_data ] )
 print( len( data[vip_data] ) )
+
 # ------------------------------------- # 
 x = np.array( [ True , False , True ] )
 y = np.array( [ 1 , 2 , 3 ] ) 
