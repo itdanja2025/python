@@ -100,3 +100,30 @@ print( z.std() )            # .std() 표준편차
 print( z.count() )          # .count() 요소 개수 
 print( z.value_counts( ) )   # 각 요소별 중복 개수
 print( z.value_counts( normalize=True ) ) # 각 요소가 전체에서 차지하는 비율(0~1)
+
+#12. 정렬 , 한쪽이 정렬되면 다른쪽이 같이 이동된다.
+# 오름차순 : .sort_index() , .sort_values() 
+# 내림차순 : .sort_index( ascending= False ) , .sort_values( ascending= False )
+x = z.sort_index()      # 인덱스(라벨) 기준의 정렬(asc) 
+print( x )
+x = z.sort_values()     # 값 기준의 정렬(asc)
+print( x )
+x = z.sort_index( ascending= False )        # 내림차순 (desc)
+print( x )
+x = z.sort_values( ascending= False )       # 내림차순 (desc)
+print( x )
+
+#13. 그룹 , 
+# .groupby( level=0 ).집계함수(), 그룹 이후에 집계중요!
+# .groupby( level=0 ).agg( ['함수명' , '함수명' , '함수명' ] )
+z = pd.Series( [10,20,30,10,20,30] ,
+    index= ['a','b','a','b','a','b'] )
+
+x = z.groupby( level=0 ).sum()  # 인덱스(라벨)별 총합계
+print( x )
+
+x = z.groupby( level=0 ).mean() # 인덱스(라벨)별 평균 
+print( x )
+
+x = z.groupby( level = 0 ).agg( [ 'sum' , 'mean' , 'count'] )   # 여러개 집계함수는 agg 함수로 묶어서 표현 
+print( x )
