@@ -27,49 +27,35 @@ result = data[ (data['Age'] >= 25) & (data['Score'] >=80 ) ]
 print( result )
 
 # 문제 5: 데이터 병합 (Merge)
-# 고객 정보가 담긴 df1과 구매 점수가 담긴 df2를 'ID' 컬럼을 기준으로 병합하되,
-# 두 데이터에 모두 존재하는 ID만 남기는 방식(inner)과 df1의 모든 정보를 유지하는 방식(left)을
-# 각각 수행하여 결과를 비교하시오.
-# df1 = pd.DataFrame({'ID': [1, 2, 3], 'Name': ['Ant', 'Bee', 'Cat']})
-# df2 = pd.DataFrame({'ID': [2, 3, 4], 'Score': [88, 92, 85]})
+df1 = pd.DataFrame({'ID': [1, 2, 3], 'Name': ['Ant', 'Bee', 'Cat']})
+df2 = pd.DataFrame({'ID': [2, 3, 4], 'Score': [88, 92, 85]})
+print( pd.merge( df1 , df2 , on='ID', how= 'inner' ) )
+print( pd.merge( df1 , df2 , on='ID', how= 'left' ) )
 
 # 문제 6: 데이터 연결 (Concat)
-# 두 개의 성적표 df1, df2를 위아래(행 방향)로 합치고, 
-# 기존 인덱스를 무시하고 새롭게 0부터 번호를 매기는 방식으로 연결하여 출력하시오.
-# df1 = pd.DataFrame({'Name': ['Ant', 'Bee'], 'Score': [90, 80]})
-# df2 = pd.DataFrame({'Name': ['Cat', 'Dog'], 'Score': [85, 75]})
+df1 = pd.DataFrame({'Name': ['Ant', 'Bee'], 'Score': [90, 80]})
+df2 = pd.DataFrame({'Name': ['Cat', 'Dog'], 'Score': [85, 75]})
+print(  pd.concat( [ df1 , df2 ] , axis= 0 , ignore_index=True ) )
 
 # 문제 7: 다중 기준 정렬
-# 아래 데이터에서 'Age'를 기준으로 오름차순 정렬하되, 
-# 만약 'Age'가 같다면 'Score'를 기준으로 내림차순 정렬하여 출력하시오.
-# data = pd.DataFrame({
-# 'Name': ['Ant', 'Bee', 'Cat', 'Dog'],
-# 'Age': [27, 27, 22, 32],
-# 'Score': [88, 95, 85, 90]
-# })
+data = pd.DataFrame({'Name': ['Ant', 'Bee', 'Cat', 'Dog'],'Age': [27, 27, 22, 32],'Score': [88, 95, 85, 90] })
+print( data.sort_values( by=[ 'Age' , 'Score'] , ascending=[ True , False ] ) )
 
 # 문제 8: 그룹화 및 집계 (Groupby)
-# 'Category'별로 'Values'의 합계(sum), 평균(mean), 그리고 데이터 개수(count)를
-# 한 번에 보여주는 요약 테이블을 생성하시오.
-# data = pd.DataFrame({
-# 'Category': ['A', 'B', 'A', 'B', 'A', 'B'],
-# 'Values': [10, 20, 30, 40, 50, 60]
-# })
+data = pd.DataFrame({ 'Category': ['A', 'B', 'A', 'B', 'A', 'B'], 'Values': [10, 20, 30, 40, 50, 60] })
+print( data.groupby( 'Category' )['Values'].agg( [ 'sum' , 'mean' , 'count' ] ) )
 
 # 문제 9: 다중 인덱스 그룹화
-# 'Category'와 'Type' 두 가지 기준을 동시에 사용하여 그룹화한 뒤,
-# 'Values'의 평균값을 구하여 출력하시오.
-# data = pd.DataFrame({
-# 'Category': ['A', 'A', 'B', 'B'],
-# 'Type': ['X', 'Y', 'X', 'Y'],
-# 'Values': [10, 20, 30, 40]
-# })
+data = pd.DataFrame({'Category': ['A', 'A', 'B', 'B'],'Type': ['X', 'Y', 'X', 'Y'],'Values': [10, 20, 30, 40] })
+print( data.groupby( ['Category' , 'Type'] )['Values'].mean() )
 
 # 문제 10: 빈도수 분석 및 컬럼명 변경
-# 아래 데이터에서 'Fruit' 열의 고윳값별 빈도수를 구하여 확인하고,
-# 최종적으로 모든 컬럼명을 ['Item', 'Style']로 변경하여 출력하시오.
-# data = pd.DataFrame({
-# 'Fruit': ['apple', 'banana', 'apple', 'orange'],
-# 'Color': ['red', 'yellow', 'red', 'orange']
-# })
-
+data = pd.DataFrame({
+ 'Fruit': ['apple', 'banana', 'apple', 'orange'],
+ 'Color': ['red', 'yellow', 'red', 'orange']
+})
+print( data['Fruit'].value_counts() )   # 고윳값(중복수) 별 빈도수
+data.columns = [ 'Item' , 'Style']   # data.columns 모든열 , data.index 모든행 # 전체수정 가능 # 원본수정O
+print( data )
+result = data.rename( columns={ 'Fruit' : 'Item' , 'Color' : 'Style' }  ) # 원본수정X 
+print( result )
