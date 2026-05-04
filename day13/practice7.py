@@ -55,7 +55,7 @@ data = pd.DataFrame({
  'Color': ['red', 'yellow', 'red', 'orange']
 })
 print( data['Fruit'].value_counts() )   # 고윳값(중복수) 별 빈도수
-data.columns = [ 'Item' , 'Style']   # data.columns 모든열 , data.index 모든행 # 전체수정 가능 # 원본수정O
+data.columns = [ 'Item' , 'Style']   # data.columns 모든열 , data.index 모든행 # 전체수정 가능 # 방법1] 원본수정O
 print( data )
-result = data.rename( columns={ 'Fruit' : 'Item' , 'Color' : 'Style' }  ) # 원본수정X 
+result = data.rename( columns={ 'Fruit' : 'Item' , 'Color' : 'Style' }  ) # 방법2] 원본수정X 
 print( result )
