@@ -17,9 +17,30 @@
 # 5-4 (성별): sns.countplot을 사용하여 성별(Sex)에 따른 생존 여부(Survived)별 인원수를 시각화한다.
 # 5-5 (객실 등급): sns.countplot을 사용하여 객실 등급(Pclass)에 따른 생존 여부(Survived)별 인원수를 시각화한다.
 # 5-6 (승선 항구): sns.countplot을 사용하여 승선 항구(Embarked)에 따른 생존 여부(Survived)별 인원수를 시각화한다.
-
 ```
-
+```
+# [1. 주택 가격 데이터 탐색 분석 ]
+# 출처: Kaggle - House Prices - Advanced Regression Techniques
+# [2. 가설]
+# 가설 1: 지상 주거 면적 이 넓을수록 판매 가격은 정비례하여 상승할 것이다.
+# 가설 2: 주택의 스타일 이나 외장재 에 따라 가격 분포의 차이가 뚜렷할 것이다.
+# 가설 3: 주택 가격과 가장 강력한 상관관계를 가진 특정 수치형 변수들이 존재할 것이다.
+# [3. 자료수집]
+# 3-1 : https://drive.google.com/file/d/1o_6VjiQDwAwHyXFZcu6QsJOigfuFoC82/view
+# 3-2 : train_HousePrices.csv 파일 판다스로 불러오기
+# [4. 데이터 전처리]
+# 4-1 (수치형): 'LotFrontage', 'MasVnrArea', 'GarageYrBlt' 등은 중앙값(Median)으로 결측치를 대체한다.
+# 4-2 (범주형-특수): 'Alley', 'PoolQC', 'Fence' 등 정보 부재가 명확한 경우 'NoAlley', 'NoPool' 등 특정 문자열로 대체한다.
+# 4-3 (범주형-일반): 아래 17개 주요 범주형 변수는 최빈값(Mode)을 활용하여 일괄 보정한다.
+# ['BsmtQual', 'BsmtCond', 'BsmtExposure', 'BsmtFinType1', 'BsmtFinType2', 'Electrical', 'FireplaceQu', 'GarageType', 
+# 'GarageFinish', 'GarageQual',  'GarageCond', 'MSZoning', 'Functional', 'SaleType', 'Exterior1st',  'Exterior2nd', 'MasVnrType']
+# [5. 데이터 시각화 및 분석]
+# 5-1 (가격 분포): sns.histplot을 사용하여 주택 판매 가격(SalePrice)의 분포와 치우침 정도를 확인한다. (KDE 포함)
+# 5-2 (면적 관계): sns.scatterplot을 사용하여 주거 면적과 가격 간의 상관관계를 산점도로 분석한다.
+# 5-3 (스타일 비교): sns.boxplot을 사용하여 주택 스타일(HouseStyle)별 가격 분포와 이상치를 파악한다.
+# 5-4 (지붕/외장재): sns.boxplot을 사용하여 지붕 스타일(RoofStyle) 및 외장재(Exterior1st)에 따른 가격 차이를 분석한다.
+# 5-5 (상관관계): sns.heatmap을 사용하여 수치형 변수 전체의 상관계수를 시각화하고 가격에 영향을 주는 핵심 인자를 도출한다.
+```
 ```
 https://docs.google.com/spreadsheets/d/1nTlqCPe-bDYqUKsjVMBOHeM_Dy04Q-Z7OfxRjTbI_sc/edit?gid=0#gid=0
 ```
