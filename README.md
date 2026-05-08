@@ -8,6 +8,7 @@
 # [3. 자료수집]
 # 3-1 : https://data.seoul.go.kr/dataList/OA-15182/F/1/datasetView.do
 # 3-2 : 2025년 1월, 2월 대여이력 CSV 파일 로드 (encoding='cp949')
+# https://drive.google.com/file/d/1tXfjwXu5HQUyKupqWeEiNk7ZlN0Xf7xw/view?usp=sharing
 # [4. 데이터 전처리 및 병합]
 # 4-1 (병합): pd.concat을 사용하여 분리된 월별 데이터를 하나로 통합하고 인덱스를 재부여한다.
 # 4-2 (정제): 결측치의 문자열 표현('\N')을 None으로 치환하고, 성별 데이터를 대문자로 통일 및 결측치를 'U'로 보정한다.
